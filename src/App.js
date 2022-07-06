@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { 
+  decrementValue,
+  incrementValue,
+  resretValue
+} from './store/actionCreators.js';
+import store from './store/store.js';
+
+
+
+
 
 function App() {
+  const { subscribe, getState } = store;
+
+  subscribe( () => {
+    console.log(getState());
+  })
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <>
+    <button onClick={() => decrementValue()}>-1</button>
+    <button onClick={() => incrementValue()}>+1</button> 
+    <button onClick={() => resretValue()}>Reset</button>
+    <div>{getState()}</div>
+   </>
   );
 }
 
